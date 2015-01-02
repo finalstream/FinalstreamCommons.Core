@@ -17,6 +17,9 @@ namespace FinalstreamCommons.Models
         public void Initialize()
         {
             InitializeCore();
+
+
+
         }
 
         protected abstract void InitializeCore();
