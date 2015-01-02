@@ -17,7 +17,7 @@ namespace FinalstreamCommons.Models
         /// <summary>
         /// ウインドウの位置、大きさを取得します。
         /// </summary>
-        Rect WindowRect { get; }
+        Rect WindowBounds { get; }
 
     }
 }
