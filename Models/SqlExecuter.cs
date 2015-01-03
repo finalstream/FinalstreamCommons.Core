@@ -76,11 +76,11 @@ namespace FinalstreamCommons.Models
         /// <param name="param"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        public dynamic Query<T>(string sql, object param = null, SQLiteTransaction tran = null)
+        public dynamic Query(string sql, object param = null, SQLiteTransaction tran = null)
         {
             _log.Debug("[SQL] {0}", sql);
             if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
-            return _connection.Query<T>(sql, param, tran);
+            return _connection.Query(sql, param, tran);
         }
 
         #region Dispose

@@ -27,6 +27,6 @@ namespace FinalstreamCommons.Models
         /// <param name="param"></param>
         /// <param name="tran"></param>
         /// <returns></returns>
-        dynamic Query<T>(string sql, object param = null, SQLiteTransaction tran = null);
+        dynamic Query(string sql, object param = null, SQLiteTransaction tran = null);
     }
 }
