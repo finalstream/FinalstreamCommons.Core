@@ -6,6 +6,7 @@ namespace FinalstreamCommons.Models
 {
     public abstract class CoreClient
     {
+
         /// <summary>
         /// 初期化を行います。
         /// </summary>

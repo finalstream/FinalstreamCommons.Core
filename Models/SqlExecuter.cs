@@ -10,7 +10,7 @@ namespace FinalstreamCommons.Models
     ///     SQLを実行するものを表します。
     /// </summary>
     /// <remarks>コネクションを変更するときはインスタン明日</remarks>
-    public class SQLExecuter : IDisposable
+    public class SQLExecuter : ISQLExecuter
     {
         /// <summary>
         ///     コネクション。
@@ -28,8 +28,8 @@ namespace FinalstreamCommons.Models
             var builder = new SQLiteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
-                LegacyFormat = false,
-                Version = 3,
+                //LegacyFormat = false,
+                //Version = 3,
                 SyncMode = SynchronizationModes.Normal,
                 JournalMode = SQLiteJournalModeEnum.Wal
             };

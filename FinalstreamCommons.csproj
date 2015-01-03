@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -69,7 +70,11 @@
     <Compile Include="Models\CoreClient.cs" />
     <Compile Include="Models\IAppConfig.cs" />
     <Compile Include="Models\IGeneralAction.cs" />
+    <Compile Include="Models\ISQLExecuter.cs" />
+    <Compile Include="Models\Libraries\Migemo.cs" />
     <Compile Include="Models\SqlExecuter.cs" />
+    <Compile Include="Models\SQLiteFunctions\GetFileSizeSQLiteFunction.cs" />
+    <Compile Include="Models\SQLiteFunctions\SumStringSQLiteFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
