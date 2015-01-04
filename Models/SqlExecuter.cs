@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using Dapper;
 using Newtonsoft.Json;
@@ -67,6 +69,20 @@ namespace FinalstreamCommons.Models
             _log.Debug("[SQL] {0}", sql);
             if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
             return _connection.Execute(sql, param, tran);
+        }
+
+        /// <summary>
+        ///     Selectを実行します。
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
+        public IEnumerable<T> Query<T>(string sql, object param = null, SQLiteTransaction tran = null)
+        {
+            _log.Debug("[SQL] {0}", sql);
+            if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
+            return _connection.Query<T>(sql, param, tran);
         }
 
         /// <summary>

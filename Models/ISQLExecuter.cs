@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 namespace FinalstreamCommons.Models
@@ -19,6 +20,15 @@ namespace FinalstreamCommons.Models
         /// <param name="tran"></param>
         /// <returns></returns>
         int Execute(string sql, object param = null, SQLiteTransaction tran = null);
+
+        /// <summary>
+        ///     Selectを実行します。
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="tran"></param>
+        /// <returns></returns>
+        IEnumerable<T> Query<T>(string sql, object param = null, SQLiteTransaction tran = null);
 
         /// <summary>
         ///     Selectを実行します。
