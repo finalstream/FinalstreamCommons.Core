@@ -66,8 +66,8 @@ namespace FinalstreamCommons.Models
         /// <returns></returns>
         public int Execute(string sql, object param = null, SQLiteTransaction tran = null)
         {
-            _log.Debug("[SQL] {0}", sql);
-            if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
+            _log.Trace("[SQL] {0}", sql);
+            if (param != null) _log.Trace("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
             return _connection.Execute(sql, param, tran);
         }
 
@@ -80,8 +80,8 @@ namespace FinalstreamCommons.Models
         /// <returns></returns>
         public IEnumerable<T> Query<T>(string sql, object param = null, SQLiteTransaction tran = null)
         {
-            _log.Debug("[SQL] {0}", sql);
-            if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
+            _log.Trace("[SQL] {0}", sql);
+            if (param != null) _log.Trace("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
             return _connection.Query<T>(sql, param, tran);
         }
 
@@ -94,8 +94,8 @@ namespace FinalstreamCommons.Models
         /// <returns></returns>
         public dynamic Query(string sql, object param = null, SQLiteTransaction tran = null)
         {
-            _log.Debug("[SQL] {0}", sql);
-            if (param != null) _log.Debug("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
+            _log.Trace("[SQL] {0}", sql);
+            if (param != null) _log.Trace("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
             return _connection.Query(sql, param, tran);
         }
 
