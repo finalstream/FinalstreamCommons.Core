@@ -15,13 +15,14 @@ namespace FinalstreamCommons.Extentions
         /// <typeparam name="T"></typeparam>
         /// <param name="nowCollection"></param>
         /// <param name="newCollection"></param>
-        public static void DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection)
+        /// <param name="comparer"></param>
+        public static void DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection, IEqualityComparer<T> comparer =null)
         {
             if (nowCollection.Count == 0) nowCollection.Clear();    // クリアしないとなぜか重複するので。
 
-            var removes = nowCollection.Except(newCollection);
+            var removes = nowCollection.Except(newCollection, comparer).ToArray();
 
-            var adds = newCollection.Except(nowCollection);
+            var adds = newCollection.Except(nowCollection, comparer).ToArray();
 
             foreach (var remove in removes)
             {
