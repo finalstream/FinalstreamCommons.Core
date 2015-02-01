@@ -16,10 +16,10 @@ namespace FinalstreamCommons.Models
     public class ActionExecuter<T> : IDisposable
     {
 
-        EventLoopScheduler _scheduler = new EventLoopScheduler();
+        private readonly EventLoopScheduler _scheduler = new EventLoopScheduler();
 
-        private ISubject<IGeneralAction<T>> _subject;
-        private IDisposable _handle;
+        private readonly ISubject<IGeneralAction<T>> _subject;
+        private readonly IDisposable _handle;
 
         public ActionExecuter(T param)
         {
