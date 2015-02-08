@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Utils
 {
+    /// <summary>
+    /// ファイルを扱うユーティリティです。
+    /// </summary>
     public static class FileUtils
     {
 
