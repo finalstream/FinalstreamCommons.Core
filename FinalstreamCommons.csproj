@@ -87,6 +87,7 @@
     <Compile Include="Utils\ColorUtils.cs" />
     <Compile Include="Utils\DialogUtils.cs" />
     <Compile Include="Utils\FileUtils.cs" />
+    <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
