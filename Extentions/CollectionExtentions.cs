@@ -18,7 +18,6 @@ namespace FinalstreamCommons.Extentions
         /// <param name="comparer"></param>
         public static void DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection, IEqualityComparer<T> comparer =null)
         {
-            if (nowCollection.Count == 0) nowCollection.Clear();    // クリアしないとなぜか重複するので。
 
             var removes = nowCollection.Except(newCollection, comparer).ToArray();
 
