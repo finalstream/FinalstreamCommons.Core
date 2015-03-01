@@ -34,6 +34,7 @@
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -69,6 +70,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\CommandLineBuilder.cs" />
     <Compile Include="Comparer\JSonEqualityComparer.cs" />
     <Compile Include="Extentions\CollectionExtentions.cs" />
     <Compile Include="Extentions\LinqExtensions.cs" />
