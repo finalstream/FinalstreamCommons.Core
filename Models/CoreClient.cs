@@ -1,17 +1,22 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using NLog;
 
 namespace FinalstreamCommons.Models
 {
     public abstract class CoreClient
     {
 
+        private readonly Logger _log = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// 初期化を行います。
         /// </summary>
         public void Initialize()
         {
+            var execAssembly = AssemblyInfoData.ExecutingAssembly;
+            _log.Info("ApplicationName: {0} {1}", execAssembly.Product, execAssembly.Version);
             InitializeCore();
         }
 

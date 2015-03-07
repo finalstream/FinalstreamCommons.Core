@@ -13,13 +13,13 @@ namespace FinalstreamCommons.Utils
     public static class DialogUtils
     {
         /// <summary>
-        /// ファイルダイアログを開きます。
+        /// ファイル選択ダイアログを開きます。
         /// </summary>
         /// <param name="title"></param>
         /// <param name="filter"></param>
         /// <returns>選択されたファイルパスを返却します。キャンセルされた場合はnullを返却します。</returns>
         public static string ShowFileDialog(
-            string title = "開くファイルを選択してください", 
+            string title = "ファイルを選択してください", 
             string filter = "すべてのファイル(*.*)|*.*")
         {
             string resultFilePath = null;
@@ -56,6 +56,42 @@ namespace FinalstreamCommons.Utils
             }
 
             return resultFilePath;
+
+        }
+
+        /// <summary>
+        /// フォルダ選択ダイアログを開きます。
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="selectedPath"></param>
+        /// <returns>選択されたフォルダパスを返却します。キャンセルされた場合はnullを返却します。</returns>
+        public static string ShowFolderDialog(
+            string description = "フォルダを選択してください",
+            string selectedPath = "")
+        {
+            string resultDirPath = null;
+
+            //OpenFileDialogクラスのインスタンスを作成
+            var fbd = new FolderBrowserDialog();
+
+            //上部に表示する説明テキストを指定する
+            fbd.Description = description;
+
+            //ルートフォルダを指定する
+            //デフォルトでDesktop
+            fbd.RootFolder = Environment.SpecialFolder.Desktop;
+
+            fbd.SelectedPath = selectedPath;
+            //ユーザーが新しいフォルダを作成できるようにする
+            fbd.ShowNewFolderButton = true;
+
+            //ダイアログを表示する
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                resultDirPath = fbd.SelectedPath;
+            }
+
+            return resultDirPath;
 
         }
 

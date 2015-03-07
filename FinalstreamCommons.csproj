@@ -75,6 +75,7 @@
     <Compile Include="Extentions\CollectionExtentions.cs" />
     <Compile Include="Extentions\LinqExtensions.cs" />
     <Compile Include="Models\ActionExecuter.cs" />
+    <Compile Include="Models\AssemblyInfoData.cs" />
     <Compile Include="Models\CoreClient.cs" />
     <Compile Include="Models\DisplayableItem.cs" />
     <Compile Include="Models\DisplayableStringItem.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Models\ISQLExecuter.cs" />
     <Compile Include="Models\Libraries\Migemo.cs" />
     <Compile Include="Models\SqlExecuter.cs" />
+    <Compile Include="Models\SQLiteFunctions\GetDirectoryPathSQLiteFunction.cs" />
     <Compile Include="Models\SQLiteFunctions\GetFileSizeSQLiteFunction.cs" />
     <Compile Include="Models\SQLiteFunctions\SumStringSQLiteFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
