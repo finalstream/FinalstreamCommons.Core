@@ -9,11 +9,14 @@ namespace FinalstreamCommons.Utils
 {
     public static class JsonUtils
     {
-
         public static string Serialize(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, Formatting.None);
+        }
+
+        public static string SerializeWithIndented(object obj)
         {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,16 @@ namespace FinalstreamCommons.Utils
             }
 
             return String.Format("{0:##0.#0}", fileSize / 1073741824.0) + " GB";
+        }
+
+        /// <summary>
+        /// ファイルサイズを取得します。
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static long GetFileSize(string filePath)
+        {
+            return new FileInfo(filePath).Length;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
+using FinalstreamCommons.Utils;
 using Newtonsoft.Json;
 using NLog;
 
@@ -7,16 +9,25 @@ namespace FinalstreamCommons.Models
 {
     public abstract class CoreClient
     {
-
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
+
+        protected Assembly ExecutingAssembly;
+
+        protected CoreClient(Assembly executingAssembly)
+        {
+            ExecutingAssembly = executingAssembly;
+        }
 
         /// <summary>
         /// 初期化を行います。
         /// </summary>
         public void Initialize()
         {
-            var execAssembly = AssemblyInfoData.ExecutingAssembly;
-            _log.Info("ApplicationName: {0} {1}", execAssembly.Product, execAssembly.Version);
+            var execAssembly = new AssemblyInfoData(ExecutingAssembly);
+            _log.Info("Start Application: {0} {1} {2}", 
+                execAssembly.Product, 
+                execAssembly.Version,
+                ApplicationUtils.IsAssemblyDebugBuild(ExecutingAssembly) ? "Debug" : "Release");
             InitializeCore();
         }
 
