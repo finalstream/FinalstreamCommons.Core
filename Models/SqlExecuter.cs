@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
+using System.Linq;
 using Dapper;
+using FinalstreamCommons.Extentions;
 using Newtonsoft.Json;
 using NLog;
 
@@ -80,6 +83,7 @@ namespace FinalstreamCommons.Models
         /// <returns></returns>
         public IEnumerable<T> Query<T>(string sql, object param = null, SQLiteTransaction tran = null)
         {
+            if (this.disposed) return Enumerable.Empty<T>();
             _log.Trace("[SQL] {0}", sql);
             if (param != null) _log.Trace("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
             return _connection.Query<T>(sql, param, tran);

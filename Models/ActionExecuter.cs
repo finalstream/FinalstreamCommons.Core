@@ -1,33 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Models
 {
     /// <summary>
-    /// アクションを実行するものを表します。
+    ///     アクションを実行するものを表します。
     /// </summary>
     public class ActionExecuter<T> : IDisposable
     {
-
+        private readonly IDisposable _handle;
         private readonly EventLoopScheduler _scheduler = new EventLoopScheduler();
 
         private readonly ISubject<IGeneralAction<T>> _subject;
-        private readonly IDisposable _handle;
 
         public ActionExecuter(T param)
         {
             _subject = new Subject<IGeneralAction<T>>();
 
             _handle = _subject.ObserveOn(_scheduler)
-                .Subscribe(x => x.Invoke(param));
-
+                .Subscribe(x =>
+                {
+                    {
+                        try
+                        {
+                            x.Invoke(param);
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            // とりああえずいまはすてとく。
+                            // TODO:なんか処理する。
+                        }
+                    }
+                });
         }
 
 
@@ -39,7 +46,7 @@ namespace FinalstreamCommons.Models
         #region Dispose
 
         // Flag: Has Dispose already been called?
-        private bool disposed = false;
+        private bool disposed;
 
         // Public implementation of Dispose pattern callable by consumers.
         public void Dispose()
@@ -58,6 +65,7 @@ namespace FinalstreamCommons.Models
             {
                 // Free any other managed objects here.
                 //
+                _scheduler.Dispose();
                 _handle.Dispose();
             }
 
@@ -67,7 +75,5 @@ namespace FinalstreamCommons.Models
         }
 
         #endregion
-
-        
     }
 }
