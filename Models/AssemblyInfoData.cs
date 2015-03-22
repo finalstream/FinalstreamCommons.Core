@@ -25,13 +25,14 @@ namespace FinalstreamCommons.Models
         public string Copyright { get; private set; }
         public string Trademark { get; private set; }
         public string Culture { get; private set; }
+        public AssemblyName[] RefrencedAssemblyNames { get; private set; }
 
         public AssemblyInfoData(Assembly assembly)
         {
             var assemblyName = new AssemblyName(assembly.FullName);
             FileName = assemblyName.Name;
             Version = assemblyName.Version.ToString();
-
+            
             FileVersion = GetAttributeName<AssemblyFileVersionAttribute>(assembly, a => a.Version);
             Title = GetAttributeName<AssemblyTitleAttribute>(assembly, a => a.Title);
             Description = GetAttributeName<AssemblyDescriptionAttribute>(assembly, a => a.Description);
@@ -41,6 +42,7 @@ namespace FinalstreamCommons.Models
             Copyright = GetAttributeName<AssemblyCopyrightAttribute>(assembly, a => a.Copyright);
             Trademark = GetAttributeName<AssemblyTrademarkAttribute>(assembly, a => a.Trademark);
             Culture = GetAttributeName<AssemblyCultureAttribute>(assembly, a => a.Culture);
+            RefrencedAssemblyNames = assembly.GetReferencedAssemblies();
         }
 
         private string GetAttributeName<T>(Assembly assembly, Func<T, string> selector) where T : Attribute
