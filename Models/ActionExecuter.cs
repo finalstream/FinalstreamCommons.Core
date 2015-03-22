@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -19,11 +20,12 @@ namespace FinalstreamCommons.Models
         public ActionExecuter(T param)
         {
             _subject = new Subject<IGeneralAction<T>>();
-
+            
             _handle = _subject.ObserveOn(_scheduler)
                 .Subscribe(x =>
                 {
                     {
+                        
                         try
                         {
                             x.Invoke(param);
@@ -65,8 +67,10 @@ namespace FinalstreamCommons.Models
             {
                 // Free any other managed objects here.
                 //
-                _scheduler.Dispose();
+                _subject.OnCompleted();
+                _subject.Wait();
                 _handle.Dispose();
+                _scheduler.Dispose();
             }
 
             // Free any unmanaged objects here.
@@ -75,5 +79,7 @@ namespace FinalstreamCommons.Models
         }
 
         #endregion
+
+
     }
 }

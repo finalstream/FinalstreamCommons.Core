@@ -70,7 +70,7 @@ namespace FinalstreamCommons.Models
         public int Execute(string sql, object param = null, SQLiteTransaction tran = null)
         {
             _log.Trace("[SQL] {0}", sql);
-            if (param != null) _log.Trace("[SQLPARAM] {0}", JsonConvert.SerializeObject(param));
+            if (param != null) param.TraceWriteJson("SQLPARAM");
             return _connection.Execute(sql, param, tran);
         }
 
