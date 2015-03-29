@@ -98,8 +98,10 @@
     <Compile Include="Utils\ApplicationUtils.cs" />
     <Compile Include="Utils\ColorUtils.cs" />
     <Compile Include="Utils\DialogUtils.cs" />
+    <Compile Include="Utils\DirecotryUtils.cs" />
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Utils\JsonUtils.cs" />
+    <Compile Include="Utils\MessageUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
