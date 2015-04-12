@@ -29,7 +29,6 @@ namespace FinalstreamCommons.Models
                 execAssembly.Product, 
                 execAssembly.Version,
                 ApplicationUtils.IsAssemblyDebugBuild(ExecutingAssembly) ? "Debug" : "Release");
-            execAssembly.RefrencedAssemblyNames.DebugWriteJson("RefrenceAssemblys", ObjectExtensions.LogFormat.Indented);
             InitializeCore();
         }
 
