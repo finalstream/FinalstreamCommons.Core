@@ -12,11 +12,14 @@ namespace FinalstreamCommons.Models
     {
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
 
-        protected Assembly ExecutingAssembly;
+        private readonly Assembly _executingAssembly;
+
+        protected readonly AssemblyInfoData ExecutingAssemblyInfo;
 
         protected CoreClient(Assembly executingAssembly)
         {
-            ExecutingAssembly = executingAssembly;
+            _executingAssembly = executingAssembly;
+            ExecutingAssemblyInfo = new AssemblyInfoData(_executingAssembly);
         }
 
         /// <summary>
@@ -24,11 +27,10 @@ namespace FinalstreamCommons.Models
         /// </summary>
         public void Initialize()
         {
-            var execAssembly = new AssemblyInfoData(ExecutingAssembly);
-            _log.Info("Start Application: {0} {1} {2}", 
-                execAssembly.Product, 
-                execAssembly.Version,
-                ApplicationUtils.IsAssemblyDebugBuild(ExecutingAssembly) ? "Debug" : "Release");
+            _log.Info("Start Application: {0} {1} {2}",
+                ExecutingAssemblyInfo.Product,
+                ExecutingAssemblyInfo.Version,
+                ApplicationUtils.IsAssemblyDebugBuild(_executingAssembly) ? "Debug" : "Release");
             InitializeCore();
         }
 

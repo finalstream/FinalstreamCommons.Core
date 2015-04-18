@@ -102,6 +102,7 @@
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Utils\JsonUtils.cs" />
     <Compile Include="Utils\MessageUtils.cs" />
+    <Compile Include="Utils\ScreenUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
