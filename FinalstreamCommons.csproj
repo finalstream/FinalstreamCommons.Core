@@ -81,6 +81,7 @@
     <Compile Include="Models\BackgroundWorker.cs" />
     <Compile Include="Models\CoreClient.cs" />
     <Compile Include="Models\DatabaseAccessor.cs" />
+    <Compile Include="Models\DynamicLinkLibraryInfo.cs" />
     <Compile Include="Models\DisplayableItem.cs" />
     <Compile Include="Models\DisplayableStringItem.cs" />
     <Compile Include="Models\IAppConfig.cs" />

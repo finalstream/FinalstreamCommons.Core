@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("FinalstreamCommons")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Finalstream Commons Library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Finalstream")]
 [assembly: AssemblyProduct("FinalstreamCommons")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Finalstream")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
