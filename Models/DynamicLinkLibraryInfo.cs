@@ -16,7 +16,7 @@ namespace FinalstreamCommons.Models
         
         public string LibraryName { get; private set; }
 
-        public string Version { get { return _version.FileVersion; }}
+        public string Version { get { return _version.FileVersion.Replace(", ", "."); }}
 
         public string License { get; private set; }
 
@@ -36,7 +36,7 @@ namespace FinalstreamCommons.Models
             License = license;
             Copyright = copyright;
             Url = url;
-            _version = FileVersionInfo.GetVersionInfo(FilePath);
+            _version = FileVersionInfo.GetVersionInfo(FilePath); 
         }
     }
 }
