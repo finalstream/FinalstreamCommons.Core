@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\CommandLineBuilder.cs" />
+    <Compile Include="Collections\LinkedListEx.cs" />
+    <Compile Include="Collections\ObservableCollectionEx.cs" />
+    <Compile Include="Collections\ObservableLinkedList.cs" />
     <Compile Include="Comparer\JSonEqualityComparer.cs" />
     <Compile Include="Extentions\CollectionExtentions.cs" />
     <Compile Include="Extentions\LinqExtensions.cs" />
@@ -92,7 +95,6 @@
     <Compile Include="Models\IGeneralAction.cs" />
     <Compile Include="Models\ISQLExecuter.cs" />
     <Compile Include="Models\Libraries\Migemo.cs" />
-    <Compile Include="Models\LinkedListEx.cs" />
     <Compile Include="Models\SqlExecuter.cs" />
     <Compile Include="Models\SQLiteFunctions\GetDirectoryPathSQLiteFunction.cs" />
     <Compile Include="Models\SQLiteFunctions\GetFileSizeSQLiteFunction.cs" />
