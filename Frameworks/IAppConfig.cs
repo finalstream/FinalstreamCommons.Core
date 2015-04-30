@@ -1,8 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows;
+﻿using System.Windows;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Frameworks
 {
     /// <summary>
     /// アプリケーション設定を表します。

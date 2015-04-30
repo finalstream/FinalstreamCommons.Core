@@ -4,7 +4,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
-namespace FinalstreamCommons.Models.Libraries
+namespace FinalstreamCommons.Libraries
 {
 	public class Migemo : IDisposable
 	{
@@ -57,23 +57,23 @@ namespace FinalstreamCommons.Models.Libraries
 		private static extern int migemo_is_enable(IntPtr obj);
 #endregion
 
-		private IntPtr migemoObject = IntPtr.Zero;
+		private IntPtr _migemoObject = IntPtr.Zero;
 
 		public IntPtr MigemoObject
 		{
 			get
 			{
-				return this.migemoObject;
+				return this._migemoObject;
 			}
 		}
 
 		public bool SetOperator(OperatorIndex index, string op)
 		{
-			return migemo_set_operator(this.migemoObject, index, op) != 0;
+			return migemo_set_operator(this._migemoObject, index, op) != 0;
 		}
 		public string GetOperator(OperatorIndex index)
 		{
-			IntPtr result = migemo_get_operator(this.migemoObject, index);
+			IntPtr result = migemo_get_operator(this._migemoObject, index);
 			if (result != IntPtr.Zero)
 				return Marshal.PtrToStringAnsi(result);
 			else
@@ -109,28 +109,28 @@ namespace FinalstreamCommons.Models.Libraries
 
 		public bool LoadDictionary(DictionaryId id, string file)
 		{
-			DictionaryId result = migemo_load(this.migemoObject, id, file);
+			DictionaryId result = migemo_load(this._migemoObject, id, file);
 			return result == id;
 		}
 
 		public bool IsEnable()
 		{
-			return migemo_is_enable(this.migemoObject) != 0;
+			return migemo_is_enable(this._migemoObject) != 0;
 		}
 
 		public Regex GetRegex(string query)
 		{
-            //Debug.WriteLine("Migemo Query : " + Query(query));
-            return new Regex(Query(Regex.Escape(query)));
+			//Debug.WriteLine("Migemo Query : " + Query(query));
+			return new Regex(Query(Regex.Escape(query)));
 		}
 
 		public string Query(string query)
 		{
-			IntPtr result = migemo_query(this.migemoObject, query);
+			IntPtr result = migemo_query(this._migemoObject, query);
 			if (result != IntPtr.Zero)
 			{
 				string retval = Marshal.PtrToStringAnsi(result);
-				migemo_release(this.migemoObject, result);
+				migemo_release(this._migemoObject, result);
 				return retval;
 			}
 			else
@@ -140,18 +140,18 @@ namespace FinalstreamCommons.Models.Libraries
 		public void Dispose()
 		{
 			//Console.WriteLine("HERE ("+this.migemoObject+")");
-			if (this.migemoObject != IntPtr.Zero)
+			if (this._migemoObject != IntPtr.Zero)
 			{
 				//Console.WriteLine("migemo_close() is called");
-				migemo_close(this.migemoObject);
-				this.migemoObject = IntPtr.Zero;
+				migemo_close(this._migemoObject);
+				this._migemoObject = IntPtr.Zero;
 			}
 			GC.SuppressFinalize(this);
 		}
 
 		public Migemo(string dictpath)
 		{
-			this.migemoObject = migemo_open(dictpath);
+			this._migemoObject = migemo_open(dictpath);
 			this.OperatorNestIn = "(?:";
 			//this.OperatorNewLine = "\\s*";
 		}

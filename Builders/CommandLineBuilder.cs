@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinalstreamCommons.Builders
+﻿namespace FinalstreamCommons.Builders
 {
+    /// <summary>
+    /// コマンドラインの文字列を生成します。
+    /// </summary>
     public class CommandLineBuilder : Microsoft.Build.Utilities.CommandLineBuilder
     {
 

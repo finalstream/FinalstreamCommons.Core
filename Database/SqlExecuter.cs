@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using Dapper;
@@ -9,7 +7,7 @@ using FinalstreamCommons.Extentions;
 using Newtonsoft.Json;
 using NLog;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Database
 {
     /// <summary>
     ///     SQLを実行するものを表します。

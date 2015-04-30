@@ -17,13 +17,13 @@ namespace FinalstreamCommons.Extentions
             // 概要:
             //     Causes child objects to be indented according to the Newtonsoft.Json.JsonTextWriter.Indentation
             //     and Newtonsoft.Json.JsonTextWriter.IndentChar settings.
-            Indented = 1,
+            Indented = 1
         }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// JSON形式に変換します。
+        ///     JSON形式に変換します。
         /// </summary>
         /// <param name="value"></param>
         /// <param name="formatting"></param>
@@ -42,48 +42,54 @@ namespace FinalstreamCommons.Extentions
             }
         }
 
+        /// <summary>
+        ///     独自のLogFormatからJson.NETのFormattingに変換します。
+        /// </summary>
+        /// <param name="logFormat"></param>
+        /// <returns></returns>
         private static Formatting ConvertLogFormatToFormatting(LogFormat logFormat)
         {
             return logFormat == LogFormat.None ? Formatting.None : Formatting.Indented;
         }
 
-
         /// <summary>
-        /// ログにJson形式で出力します。
+        ///     DebugレベルでログにJson形式で出力します。
         /// </summary>
-        /// <param name="format"></param>
         /// <param name="value"></param>
         /// <param name="detail"></param>
         /// <param name="formatting"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public static void DebugWriteJson(this object value, string detail = null, LogFormat formatting = LogFormat.None, [CallerMemberName] string caller = null)
+        public static void DebugWriteJson(this object value, string detail = null, LogFormat formatting = LogFormat.None,
+            [CallerMemberName] string caller = null)
         {
-            if (!Log.IsDebugEnabled) return; 
+            if (!Log.IsDebugEnabled) return;
             if (value == null) return;
             if (caller == null) caller = "Unknown";
 
-            var format =  string.Format("{0}{1}:",caller, string.IsNullOrEmpty(detail)? "":"(" + detail + ")") + "{0}";
+            var format = string.Format("{0}{1}:", caller, string.IsNullOrEmpty(detail) ? "" : "(" + detail + ")") +
+                         "{0}";
 
             Log.Debug(() => string.Format(format, value.ToJson(formatting)));
         }
 
         /// <summary>
-        /// ログにJson形式で出力します。
+        ///     TraceレベルでログにJson形式で出力します。
         /// </summary>
-        /// <param name="format"></param>
         /// <param name="value"></param>
         /// <param name="detail"></param>
         /// <param name="formatting"></param>
         /// <param name="caller"></param>
         /// <returns></returns>
-        public static void TraceWriteJson(this object value, string detail = null, LogFormat formatting = LogFormat.None, [CallerMemberName] string caller = null)
+        public static void TraceWriteJson(this object value, string detail = null, LogFormat formatting = LogFormat.None,
+            [CallerMemberName] string caller = null)
         {
-            if (!Log.IsTraceEnabled) return; 
+            if (!Log.IsTraceEnabled) return;
             if (value == null) return;
             if (caller == null) caller = "Unknown";
 
-            var format = string.Format("{0}{1}:", caller, string.IsNullOrEmpty(detail) ? "" : "(" + detail + ")") + "{0}";
+            var format = string.Format("{0}{1}:", caller, string.IsNullOrEmpty(detail) ? "" : "(" + detail + ")") +
+                         "{0}";
 
             Log.Trace(() => string.Format(format, value.ToJson(formatting)));
         }

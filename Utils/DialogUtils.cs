@@ -19,9 +19,12 @@ namespace FinalstreamCommons.Utils
         /// <param name="filter"></param>
         /// <returns>選択されたファイルパスを返却します。キャンセルされた場合はnullを返却します。</returns>
         public static string ShowFileDialog(
-            string title = "ファイルを選択してください", 
-            string filter = "すべてのファイル(*.*)|*.*")
+            string title = null, 
+            string filter = null)
         {
+            if (title == null) title = Properties.Resources.FileDialogTitle;
+            if (filter == null) filter = Properties.Resources.AllFilesFilter;
+
             string resultFilePath = null;
 
             //OpenFileDialogクラスのインスタンスを作成
@@ -66,9 +69,11 @@ namespace FinalstreamCommons.Utils
         /// <param name="selectedPath"></param>
         /// <returns>選択されたフォルダパスを返却します。キャンセルされた場合はnullを返却します。</returns>
         public static string ShowFolderDialog(
-            string description = "フォルダを選択してください",
+            string description = null,
             string selectedPath = "")
         {
+            if (description == null) description = Properties.Resources.FolderDialogDescription;
+
             string resultDirPath = null;
 
             //OpenFileDialogクラスのインスタンスを作成

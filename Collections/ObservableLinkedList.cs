@@ -2,23 +2,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Threading;
 
 namespace FinalstreamCommons.Collections
 {
     /// <summary>
-    /// This class is a LinkedList that can be used in a WPF MVVM scenario. Composition was used instead of inheritance,
-    /// because inheriting from LinkedList does not allow overriding its methods.
+    ///     This class is a LinkedList that can be used in a WPF MVVM scenario. Composition was used instead of inheritance,
+    ///     because inheriting from LinkedList does not allow overriding its methods.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ObservableLinkedList<T> : INotifyCollectionChanged, IList<T>
     {
         private readonly LinkedListEx<T> _linkedList;
 
+        public int IndexOf(T item)
+        {
+            var count = 0;
+            for (var node = _linkedList.First; node != null; node = node.Next, count++)
+            {
+                if (item.Equals(node.Value))
+                    return count;
+            }
+            return -1;
+        }
+
+        public void Insert(int index, T item)
+        {
+            _linkedList.AddAfter(_linkedList[index], item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            _linkedList.Remove(_linkedList[index]);
+        }
+
+        public T this[int index]
+        {
+            get { return _linkedList[index].Value; }
+            set { _linkedList[index] = new LinkedListNode<T>(value); }
+        }
+
+        public void Reset(IEnumerable<T> enumerable)
+        {
+            _linkedList.Reset(enumerable);
+            OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
+        }
+
         #region Variables accessors
+
         public int Count
         {
             get { return _linkedList.Count; }
@@ -35,9 +65,11 @@ namespace FinalstreamCommons.Collections
         {
             get { return _linkedList.Last; }
         }
+
         #endregion
 
         #region Constructors
+
         public ObservableLinkedList()
         {
             _linkedList = new LinkedListEx<T>();
@@ -47,12 +79,14 @@ namespace FinalstreamCommons.Collections
         {
             _linkedList = new LinkedListEx<T>(collection);
         }
+
         #endregion
 
         #region LinkedList<T> Composition
+
         public LinkedListNode<T> AddAfter(LinkedListNode<T> prevNode, T value)
         {
-            LinkedListNode<T> ret = _linkedList.AddAfter(prevNode, value);
+            var ret = _linkedList.AddAfter(prevNode, value);
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
             return ret;
         }
@@ -65,7 +99,7 @@ namespace FinalstreamCommons.Collections
 
         public LinkedListNode<T> AddBefore(LinkedListNode<T> node, T value)
         {
-            LinkedListNode<T> ret = _linkedList.AddBefore(node, value);
+            var ret = _linkedList.AddBefore(node, value);
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
             return ret;
         }
@@ -78,7 +112,7 @@ namespace FinalstreamCommons.Collections
 
         public LinkedListNode<T> AddFirst(T value)
         {
-            LinkedListNode<T> ret = _linkedList.AddFirst(value);
+            var ret = _linkedList.AddFirst(value);
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
             return ret;
         }
@@ -91,7 +125,7 @@ namespace FinalstreamCommons.Collections
 
         public LinkedListNode<T> AddLast(T value)
         {
-            LinkedListNode<T> ret = _linkedList.AddLast(value);
+            var ret = _linkedList.AddLast(value);
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
             return ret;
         }
@@ -145,7 +179,7 @@ namespace FinalstreamCommons.Collections
 
         public bool Remove(T value)
         {
-            bool ret = _linkedList.Remove(value);
+            var ret = _linkedList.Remove(value);
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Remove);
             return ret;
         }
@@ -167,11 +201,13 @@ namespace FinalstreamCommons.Collections
             _linkedList.RemoveLast();
             OnNotifyCollectionChanged(NotifyCollectionChangedAction.Remove);
         }
+
         #endregion
 
         #region INotifyCollectionChanged Members
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
+
         public void OnNotifyCollectionChanged(NotifyCollectionChangedAction action)
         {
             if (CollectionChanged != null)
@@ -195,38 +231,5 @@ namespace FinalstreamCommons.Collections
         }
 
         #endregion
-
-        public void Reset(IEnumerable<T> enumerable)
-        {
-            _linkedList.Reset(enumerable);
-            OnNotifyCollectionChanged(NotifyCollectionChangedAction.Add);
-        }
-
-        public int IndexOf(T item)
-        {
-            var count = 0;
-            for (var node = _linkedList.First; node != null; node = node.Next, count++)
-            {
-                if (item.Equals(node.Value))
-                    return count;
-            }
-            return -1;
-        }
-
-        public void Insert(int index, T item)
-        {
-            _linkedList.AddAfter(_linkedList[index], item);
-        }
-
-        public void RemoveAt(int index)
-        {
-            _linkedList.Remove(_linkedList[index]);
-        }
-
-        public T this[int index]
-        {
-            get { return _linkedList[index].Value; }
-            set { _linkedList[index] = new LinkedListNode<T>(value); }
-        }
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FinalstreamCommons.Comparer;
+using FinalstreamCommons.Comparers;
 
 namespace FinalstreamCommons.Extentions
 {
-    public static partial class LinqExtensions
+    public static class LinqExtensions
     {
         public static IEnumerable<T> ExceptUsingJSonCompare<T>
             (this IEnumerable<T> first, IEnumerable<T> second)

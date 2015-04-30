@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Database
 {
+    // ReSharper disable once InconsistentNaming
     public interface ISQLExecuter : IDisposable
     {
         /// <summary>

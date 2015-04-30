@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Frameworks
 {
     public abstract class BackgroundAction
     {

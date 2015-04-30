@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Systems
 {
 // ReSharper disable once InconsistentNaming
     /// <summary>

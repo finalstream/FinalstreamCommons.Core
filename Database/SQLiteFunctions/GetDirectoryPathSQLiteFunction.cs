@@ -1,9 +1,10 @@
 ﻿using System.Data.SQLite;
 using System.IO;
 
-namespace FinalstreamCommons.Models.SQLiteFunctions
+namespace FinalstreamCommons.Database.SQLiteFunctions
 {
     [SQLiteFunction(Name = "GETDIRPATH", FuncType = FunctionType.Scalar, Arguments = 1)]
+    // ReSharper disable once InconsistentNaming
     public class GetDirectoryPathSQLiteFunction : SQLiteFunction
     {
 

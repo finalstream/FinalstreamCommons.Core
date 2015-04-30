@@ -21,12 +21,7 @@ namespace FinalstreamCommons.Utils
         /// <returns>変換後のファイルサイズ。</returns>
         public static string ConvertFileSizeGigaByteString(long fileSize)
         {
-            if (fileSize == 0)
-            {
-                return "";
-            }
-
-            return String.Format("{0:##0.#0}", fileSize / 1073741824.0) + " GB";
+            return String.Format("{0:###0.#0} GB", fileSize / 1073741824.0);
         }
 
         /// <summary>
@@ -46,12 +41,11 @@ namespace FinalstreamCommons.Utils
         /// <param name="destPath"></param>
         /// <returns>移動元と移動先が同じか、移動先にすでに同名のファイルが存在する場合はfalse。成功したらtrue。</returns>
         /// <remarks></remarks>
-        public static bool Move(string srcPath, string destPath)
+        public static void Move(string srcPath, string destPath)
         {
-            if (srcPath == destPath || File.Exists(destPath)) return false; // 元と同じか存在したら何もしない。
+            if (srcPath == destPath || File.Exists(destPath)) return;
 
             File.Move(srcPath, destPath);
-            return true;
         }
 
         public static string GetDriveLetter(string filePath)

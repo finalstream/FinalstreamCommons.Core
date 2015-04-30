@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Frameworks
 {
     /// <summary>
     ///     バッググラウンドで動作するスレッドを表します。

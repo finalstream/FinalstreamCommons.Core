@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Frameworks
 {
     /// <summary>
     ///     アクションを実行するものを表します。

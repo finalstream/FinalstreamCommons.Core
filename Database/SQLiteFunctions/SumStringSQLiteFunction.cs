@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace FinalstreamCommons.Models.SQLiteFunctions
+namespace FinalstreamCommons.Database.SQLiteFunctions
 {
     [SQLiteFunction(Name = "SUMSTR", FuncType = FunctionType.Aggregate, Arguments = 1)]
+    // ReSharper disable once InconsistentNaming
     public class SumStringSQLiteFunction : SQLiteFunction
     {
 

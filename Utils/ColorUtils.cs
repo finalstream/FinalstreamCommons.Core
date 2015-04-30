@@ -6,9 +6,17 @@ using System.Windows.Media;
 
 namespace FinalstreamCommons.Utils
 {
+    /// <summary>
+    /// カラーユーティリティを表します。
+    /// </summary>
     public static class ColorUtils
     {
-
+        
+        /// <summary>
+        /// 反対色を取得します。
+        /// </summary>
+        /// <param name="baseColor"></param>
+        /// <returns></returns>
         public static Color GetReverseColor(Color baseColor)
         {
             int sum = baseColor.R + baseColor.G + baseColor.B;
@@ -25,6 +33,11 @@ namespace FinalstreamCommons.Utils
             }
         }
 
+        /// <summary>
+        /// 反対色を取得します。
+        /// </summary>
+        /// <param name="baseColor"></param>
+        /// <returns></returns>
         public static Color GetReverseColor(Color baseColor, int gradientPower)
         {
             int sum = baseColor.R + baseColor.G + baseColor.B;

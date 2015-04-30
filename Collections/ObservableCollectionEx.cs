@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Collections
 {
@@ -12,7 +7,7 @@ namespace FinalstreamCommons.Collections
     {
         public void Reset(IEnumerable<T> enumerable)
         {
-            this.Clear();
+            Clear();
             foreach (var item in enumerable)
             {
                 Add(item);

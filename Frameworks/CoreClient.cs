@@ -1,13 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
-using FinalstreamCommons.Extentions;
+using FinalstreamCommons.Systems;
 using FinalstreamCommons.Utils;
 using Newtonsoft.Json;
 using NLog;
 
-namespace FinalstreamCommons.Models
+namespace FinalstreamCommons.Frameworks
 {
+    /// <summary>
+    /// クライアントのコア機能を表します。
+    /// </summary>
     public abstract class CoreClient
     {
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
@@ -16,6 +18,10 @@ namespace FinalstreamCommons.Models
 
         protected readonly AssemblyInfoData ExecutingAssemblyInfo;
 
+        /// <summary>
+        /// 新しいインスタンスを初期化します。
+        /// </summary>
+        /// <param name="executingAssembly"></param>
         protected CoreClient(Assembly executingAssembly)
         {
             _executingAssembly = executingAssembly;
@@ -62,7 +68,14 @@ namespace FinalstreamCommons.Models
             File.WriteAllText(configFilePath, JsonConvert.SerializeObject(config, Formatting.Indented));
         }
 
+        /// <summary>
+        /// 初期化を行います。
+        /// </summary>
         protected abstract void InitializeCore();
+        
+        /// <summary>
+        /// ファイナライズを行います。
+        /// </summary>
         protected abstract void FinalizeCore();
     }
 }
