@@ -1,2 +1,2 @@
 # FinalstreamCommons
-Application Development Support 
+Application Development Support Library 
