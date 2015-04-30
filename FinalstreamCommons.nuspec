@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>FinalstreamCommons</id>
+        <version>0.2.0</version>
+        <title>FinalstreamCommons</title>
+        <authors>Finalstream</authors>
+        <owners>Finalstream</owners>
+        <licenseUrl>https://github.com/finalstream/FinalstreamCommons/blob/master/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Application Development Support Framework &amp; Library.</description>
+        <copyright>Copyright ©  2015 Finalstream</copyright>
+        <language />
+        <dependencies>
+            <dependency id="Dapper" version="1.40" />
+            <dependency id="Newtonsoft.Json" version="6.0.8" />
+            <dependency id="NLog" version="3.2.1" />
+            <dependency id="System.Data.SQLite" version="1.0.96.0" />
+            <dependency id="Rx-Main" version="2.2.5" />
+        </dependencies>
+    </metadata>
+    <files />
+</package>
