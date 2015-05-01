@@ -15,6 +15,18 @@ namespace FinalstreamCommons.Database
         /// SQLエグゼキュータを生成します。
         /// </summary>
         /// <param name="databaseFilePath">データベースファイルパス</param>
+        /// <param name="sqliteFunctions"></param>
+        /// <returns></returns>
+        public static SQLExecuter Create(string databaseFilePath,
+            Type[] sqliteFunctions)
+        {
+            return new SQLExecuter(databaseFilePath, sqliteFunctions);
+        }
+
+        /// <summary>
+        /// SQLエグゼキュータを生成します。
+        /// </summary>
+        /// <param name="databaseFilePath">データベースファイルパス</param>
         /// <param name="blankDatabaseFilePath">ブランクのデータベースファイルパス</param>
         /// <param name="sqliteFunctions"></param>
         /// <returns></returns>

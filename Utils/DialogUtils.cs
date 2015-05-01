@@ -12,6 +12,9 @@ namespace FinalstreamCommons.Utils
     /// </summary>
     public static class DialogUtils
     {
+
+        public const string MessageTitleQuestion = "Question?";
+
         /// <summary>
         /// ファイル選択ダイアログを開きます。
         /// </summary>

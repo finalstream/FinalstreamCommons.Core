@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.FileIO;
 
 namespace FinalstreamCommons.Utils
 {
@@ -53,6 +54,20 @@ namespace FinalstreamCommons.Utils
             if (string.IsNullOrEmpty(filePath)) return "";
 
             return filePath.Substring(0, 1).ToUpper();
+        }
+
+        /// <summary>
+        /// ファイルをゴミ箱に移動する
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static void MoveRecycleBin(string filePath)
+        {
+
+            FileSystem.DeleteFile(
+                  filePath,
+                  UIOption.OnlyErrorDialogs,
+                  RecycleOption.SendToRecycleBin);
+
         }
     }
 }

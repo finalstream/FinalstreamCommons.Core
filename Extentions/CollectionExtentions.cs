@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace FinalstreamCommons.Extentions
 {
@@ -31,6 +32,17 @@ namespace FinalstreamCommons.Extentions
             {
                 if (!nowCollection.Contains(add)) nowCollection.Add(add);
             }
+        }
+
+        /// <summary>
+        /// コレクションの要素が１つであるかどうか。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        public static bool IsSingle<T>(this ICollection<T> collection)
+        {
+            return collection.Count == 1;
         }
     }
 }

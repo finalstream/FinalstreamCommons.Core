@@ -28,6 +28,15 @@ namespace FinalstreamCommons.Database
         /// <param name="databaseFilePath"></param>
         public SQLExecuter(string databaseFilePath, Type[] functionTypes = null)
         {
+
+            if (functionTypes != null)
+            {
+                foreach (Type functionType in functionTypes)
+                {
+                    SQLiteFunction.RegisterFunction(functionType);
+                }
+            }
+
             var builder = new SQLiteConnectionStringBuilder
             {
                 DataSource = databaseFilePath,
@@ -40,13 +49,7 @@ namespace FinalstreamCommons.Database
             _connection = new SQLiteConnection(builder.ToString());
             _connection.Open();
 
-            if (functionTypes != null)
-            {
-                foreach (Type functionType in functionTypes)
-                {
-                    SQLiteFunction.RegisterFunction(functionType);
-                }
-            }
+            
         }
 
         /// <summary>
