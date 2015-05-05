@@ -1,13 +1,13 @@
 # FinalstreamCommons
 
-Windowsでアプリケーションを開発するフレームワーク＆ライブラリです。
+Windowsでアプリケーションを開発するフレームワーク＆ライブラリです。  
 データベースはSQLiteをサポートしています。
 
 もともと[Movselex](http://www.finalstream.net/movselex/)向けに作成したものですが、
-次世代のLinear Audio Playerにも採用する予定です。
+次世代のLinear Audio Playerにも採用する予定です。  
 今後、Finalstreamで開発するアプリケーションのフレームワークとして精錬していく予定です。
 
-フレームワークとしての使用方法等は近い将来オープンソースとして公開するMovselexのソースを確認していただければと思います
+フレームワークとしての使用方法等は近い将来オープンソースとして公開するMovselexのソースを確認していただければと思います。
 
 [![Build status](https://ci.appveyor.com/api/projects/status/27uk9s614srvn0dr?svg=true)](https://ci.appveyor.com/project/finalstream/finalstreamcommons)
 
