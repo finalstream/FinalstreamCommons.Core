@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace FinalstreamCommons.Frameworks
+namespace FinalstreamCommons.Frameworks.Actions
 {
     /// <summary>
     /// 標準のアクションを表します。

@@ -25,6 +25,16 @@ namespace FinalstreamCommons.Utils
             );
         }
 
+        /// <summary>
+        /// 後ろから検索して見つかったら１度だけ置換します。
+        /// </summary>
+        /// <returns></returns>
+        public static string ReplaceLastOnce(string s, string find, string replace)
+        {
+            var index = s.LastIndexOf(find);
+            if (index == -1) return s;
+            return s.Remove(index, find.Length).Insert(index, replace);
+        }
 
     }
 }

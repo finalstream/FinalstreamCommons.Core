@@ -42,11 +42,12 @@ namespace FinalstreamCommons.Utils
         /// <param name="destPath"></param>
         /// <returns>移動元と移動先が同じか、移動先にすでに同名のファイルが存在する場合はfalse。成功したらtrue。</returns>
         /// <remarks></remarks>
-        public static void Move(string srcPath, string destPath)
+        public static bool Move(string srcPath, string destPath)
         {
-            if (srcPath == destPath || File.Exists(destPath)) return;
+            if (srcPath == destPath || File.Exists(destPath)) return false;
 
             File.Move(srcPath, destPath);
+            return true;
         }
 
         public static string GetDriveLetter(string filePath)
@@ -62,6 +63,7 @@ namespace FinalstreamCommons.Utils
         /// <param name="filePath"></param>
         public static void MoveRecycleBin(string filePath)
         {
+            if (!File.Exists(filePath)) return;
 
             FileSystem.DeleteFile(
                   filePath,

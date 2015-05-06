@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Microsoft.VisualBasic.FileIO;
 
 namespace FinalstreamCommons.Utils
 {
@@ -16,7 +17,7 @@ namespace FinalstreamCommons.Utils
         {
             if (!IsEmptyDirectory(direcotry)) return;
 
-            Directory.Delete(direcotry);
+            MoveRecycleBin(direcotry);
         }
 
         /// <summary>
@@ -38,6 +39,23 @@ namespace FinalstreamCommons.Utils
                 // アクセス権がないなどの場合は空でないとする
                 return false;
             }
+        }
+
+        /// <summary>
+        /// フォルダをゴミ箱に移動する
+        /// </summary>
+        /// <param name="dirPath"></param>
+        public static void MoveRecycleBin(string dirPath)
+        {
+
+            if (Directory.Exists(dirPath))
+            {
+                FileSystem.DeleteDirectory(
+                    dirPath,
+                    UIOption.OnlyErrorDialogs,
+                    RecycleOption.SendToRecycleBin);
+            }
+
         }
     }
 }

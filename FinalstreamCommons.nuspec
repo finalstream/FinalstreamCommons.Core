@@ -17,7 +17,9 @@
             <dependency id="NLog" version="3.2.1" />
             <dependency id="System.Data.SQLite" version="1.0.96.0" />
             <dependency id="Rx-Main" version="2.2.5" />
+            <dependency id="RestSharp" version="105.1.0" />
         </dependencies>
+        <tags>AppFramework</tags>
     </metadata>
     <files />
 </package>

@@ -1,4 +1,4 @@
-namespace FinalstreamCommons.Frameworks
+namespace FinalstreamCommons.Frameworks.Actions
 {
     /// <summary>
     /// 標準のアクションを表します。

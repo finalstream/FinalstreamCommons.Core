@@ -3,6 +3,8 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Threading.Tasks;
+using FinalstreamCommons.Frameworks.Actions;
+using NLog;
 
 namespace FinalstreamCommons.Frameworks
 {
@@ -11,6 +13,23 @@ namespace FinalstreamCommons.Frameworks
     /// </summary>
     public class ActionExecuter<T> : IDisposable
     {
+        private readonly Logger _log = LogManager.GetCurrentClassLogger();
+
+        #region ExecuteFailedイベント
+
+        public event EventHandler<Exception> ExecuteFailed;
+
+        protected virtual void OnExecuteFailed(Exception ex)
+        {
+            var handler = this.ExecuteFailed;
+            if (handler != null)
+            {
+                handler(this, ex);
+            }
+        }
+
+        #endregion
+
         private readonly IDisposable _handle;
         private readonly EventLoopScheduler _scheduler = new EventLoopScheduler();
 
@@ -24,15 +43,19 @@ namespace FinalstreamCommons.Frameworks
                 .Subscribe(x =>
                 {
                     {
-                        
+
                         try
                         {
                             x.Invoke(param);
                         }
                         catch (TaskCanceledException)
                         {
-                            // とりああえずいまはすてとく。
-                            // TODO:なんか処理する。
+                            // タスク実行中に終了したら発生するので捨てる。
+                        }
+                        catch (Exception ex)
+                        {
+                            _log.ErrorException(string.Format("Execute Action Failed. Action:{0}", x.GetType()), ex);
+                            OnExecuteFailed(ex);
                         }
                     }
                 });

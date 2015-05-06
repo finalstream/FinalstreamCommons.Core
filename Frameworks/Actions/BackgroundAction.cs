@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace FinalstreamCommons.Frameworks
+namespace FinalstreamCommons.Frameworks.Actions
 {
     public abstract class BackgroundAction
     {

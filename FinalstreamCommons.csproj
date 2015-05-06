@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
     </Reference>
@@ -83,9 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\CommandLineBuilder.cs" />
+    <Compile Include="Collections\ISelectableItem.cs" />
     <Compile Include="Collections\LinkedListEx.cs" />
     <Compile Include="Collections\ObservableCollectionEx.cs" />
     <Compile Include="Collections\ObservableLinkedList.cs" />
+    <Compile Include="Collections\SelectableObservableCollection.cs" />
     <Compile Include="Comparers\JSonEqualityComparer.cs" />
     <Compile Include="Database\DatabaseAccessor.cs" />
     <Compile Include="Database\IDatabaseAccessor.cs" />
@@ -99,15 +105,16 @@
     <Compile Include="Extentions\LinqExtensions.cs" />
     <Compile Include="Extentions\ObjectExtentions.cs" />
     <Compile Include="Frameworks\ActionExecuter.cs" />
-    <Compile Include="Frameworks\BackgroundAction.cs" />
+    <Compile Include="Frameworks\Actions\BackgroundAction.cs" />
+    <Compile Include="Frameworks\Actions\BackgroundIntervalAction.cs" />
+    <Compile Include="Frameworks\Actions\GeneralAction.cs" />
+    <Compile Include="Frameworks\Actions\IGeneralAction.cs" />
+    <Compile Include="Frameworks\Actions\SchemaUpdateAction.cs" />
     <Compile Include="Frameworks\BackgroundWorker.cs" />
     <Compile Include="Frameworks\AppClient.cs" />
     <Compile Include="Frameworks\DisplayableItem.cs" />
-    <Compile Include="Frameworks\GeneralAction.cs" />
     <Compile Include="Frameworks\IAppClient.cs" />
     <Compile Include="Frameworks\IAppConfig.cs" />
-    <Compile Include="Frameworks\IGeneralAction.cs" />
-    <Compile Include="Frameworks\SchemaUpdateAction.cs" />
     <Compile Include="Libraries\Migemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\AssemblyInfoData.cs" />
@@ -121,6 +128,8 @@
     <Compile Include="Utils\FileUtils.cs" />
     <Compile Include="Utils\ScreenUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="WebServices\Response\GoogleCustomSearchResponse.cs" />
+    <Compile Include="WebServices\GoogleCustomSearchService.cs" />
     <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
   <ItemGroup>

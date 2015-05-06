@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using FinalstreamCommons.Frameworks.Actions;
 
 namespace FinalstreamCommons.Frameworks
 {
@@ -10,12 +11,14 @@ namespace FinalstreamCommons.Frameworks
     /// </summary>
     public class BackgroundWorker : IDisposable
     {
+        private readonly TimeSpan _interval;
         private CancellationTokenSource _cancellationTokenSource;
 
         public ICollection<BackgroundAction> BackgroundActions { get; private set; }
 
-        public BackgroundWorker(ICollection<BackgroundAction> backgroundActions)
+        public BackgroundWorker(TimeSpan interval, ICollection<BackgroundAction> backgroundActions)
         {
+            _interval = interval;
             BackgroundActions = backgroundActions;
         }
 
@@ -33,7 +36,7 @@ namespace FinalstreamCommons.Frameworks
                         backgroundAction.InvokeAsync();
                     }
 
-                    Task.Delay(1000).Wait();
+                    Task.Delay(_interval).Wait();
                 }
             },
                 _cancellationTokenSource.Token,

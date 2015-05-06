@@ -22,6 +22,21 @@ namespace FinalstreamCommons.Frameworks
 
         public IAppConfig AppConfig { get; protected set; }
 
+        #region ExceptionThrowedイベント
+
+        public event EventHandler<Exception> ExceptionThrowed;
+
+        protected virtual void OnExceptionThrowed(Exception ex)
+        {
+            var handler = this.ExceptionThrowed;
+            if (handler != null)
+            {
+                handler(this, ex);
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// 新しいインスタンスを初期化します。
         /// </summary>

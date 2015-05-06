@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Bson;
-using NLog;
+﻿using NLog;
 
-namespace FinalstreamCommons.Frameworks
+namespace FinalstreamCommons.Frameworks.Actions
 {
     /// <summary>
     /// スキーマのアップグレードを行うアクションを表します。
