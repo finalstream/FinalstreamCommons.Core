@@ -10,6 +10,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Application Development Support Framework &amp; Library.</description>
         <copyright>Copyright ©  2015 Finalstream</copyright>
+        <projectUrl>https://github.com/finalstream/FinalstreamCommons</projectUrl>
         <language />
         <dependencies>
             <dependency id="Dapper" version="1.40" />
