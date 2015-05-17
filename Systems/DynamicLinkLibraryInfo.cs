@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 
 namespace FinalstreamCommons.Systems
 {
@@ -27,7 +28,7 @@ namespace FinalstreamCommons.Systems
             License = license;
             Copyright = copyright;
             Url = url;
-            _version = FileVersionInfo.GetVersionInfo(FilePath);
+            _version = FilePath != null ? FileVersionInfo.GetVersionInfo(FilePath) : null;
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace FinalstreamCommons.Systems
         /// </summary>
         public string Version
         {
-            get { return _version.FileVersion.Replace(", ", "."); }
+            get { return _version != null ? _version.FileVersion.Replace(", ", ".") : ""; }
         }
 
         /// <summary>

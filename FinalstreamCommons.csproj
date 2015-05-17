@@ -122,6 +122,7 @@
     <Compile Include="Systems\STATask.cs" />
     <Compile Include="Utils\ApplicationUtils.cs" />
     <Compile Include="Utils\ColorUtils.cs" />
+    <Compile Include="Utils\CultureUtils.cs" />
     <Compile Include="Utils\DateUtils.cs" />
     <Compile Include="Utils\DialogUtils.cs" />
     <Compile Include="Utils\DirecotryUtils.cs" />

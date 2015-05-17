@@ -11,6 +11,15 @@ namespace FinalstreamCommons.Collections
     {
 
         /// <summary>
+        /// 最初の選択アイテムを取得します。
+        /// </summary>
+        /// <returns></returns>
+        public T GetFirstSelectedItem()
+        {
+            return Items.FirstOrDefault(x => x.IsSelected);
+        }
+
+        /// <summary>
         /// 1つだけ選択します。
         /// </summary>
         public void SingleSelection(int selectIndex)
