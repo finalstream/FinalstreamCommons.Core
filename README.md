@@ -13,14 +13,14 @@ Windowsアプリケーション開発をサポートするフレームワーク�
 
 ##主な機能
 
-#Framework
+###Framework
 * AppClient(アプリケーションのクライント)
  * 設定ファイル(json)をサポート
- * スレッドセーフ機構(アクションを処理の単位として特定のスレッドで実行)
+ * スレッドセーフ処理実行機構(アクションを処理の単位として特定のスレッドで実行)
  * データベーススキーマアップグレード用アクション
 * BackgroundWorker(バックグラウンド処理を実装を支援)
 
-#Database
+###Database
 * DatabaseAccessor(データベースへのアクセスをサポート)
 * SQLExecuter(Dapperのラッパ。SQLログ出力)
 * SQLiteFunctions
@@ -28,13 +28,13 @@ Windowsアプリケーション開発をサポートするフレームワーク�
  * GetFileSizeSQLiteFunction(ファイルサイズ取得)
  * JoinStringSQLiteFunction(string.joinをSQLで実現)
 
-#Utils
+###Utils
 * ColorUtils(反対色などを取得)
 * DateUtils(シーズン取得)
 * DialogUtils(ファイル選択、フォルダ選択ダイアログ)
 * ScreenUtils(デバイス名からディスプレイデバイス情報取得)
 
-#WebService
+###WebService
 * GoogleCustomSearchService([Googleカスタム検索エンジン](https://cse.google.co.jp/cse/?hl=ja)の結果を取得)
 
 
