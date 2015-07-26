@@ -31,6 +31,7 @@ namespace FinalstreamCommons.Frameworks
             {
                 while (true)
                 {
+                    if (_cancellationTokenSource.Token.IsCancellationRequested) break;
                     foreach (var backgroundAction in BackgroundActions)
                     {
                         backgroundAction.InvokeAsync();
@@ -42,11 +43,6 @@ namespace FinalstreamCommons.Frameworks
                 _cancellationTokenSource.Token,
                 TaskCreationOptions.LongRunning,
                 TaskScheduler.Default);
-        }
-
-        public void Stop()
-        {
-            _cancellationTokenSource.Cancel();
         }
 
         #region Dispose
