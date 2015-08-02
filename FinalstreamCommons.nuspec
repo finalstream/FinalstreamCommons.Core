@@ -15,7 +15,7 @@
         <dependencies>
             <dependency id="Dapper" version="1.40" />
             <dependency id="Newtonsoft.Json" version="6.0.8" />
-            <dependency id="NLog" version="3.2.1" />
+            <dependency id="NLog" version="4.0.1" />
             <dependency id="System.Data.SQLite" version="1.0.96.0" />
             <dependency id="Rx-Main" version="2.2.5" />
             <dependency id="RestSharp" version="105.1.0" />
