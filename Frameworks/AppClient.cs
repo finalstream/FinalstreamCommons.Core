@@ -22,6 +22,8 @@ namespace FinalstreamCommons.Frameworks
 
         public IAppConfig AppConfig { get; protected set; }
 
+        public bool IsInitialized { get; protected set; }
+
         #region ExceptionThrowedイベント
 
         public event EventHandler<Exception> ExceptionThrowed;

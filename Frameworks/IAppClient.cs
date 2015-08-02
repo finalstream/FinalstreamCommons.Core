@@ -12,6 +12,11 @@ namespace FinalstreamCommons.Frameworks
         /// </summary>
         IAppConfig AppConfig { get; }
 
+        /// <summary>
+        /// アプリケーションが初期化済みかどうか。
+        /// </summary>
+        bool IsInitialized { get; }
+
         
     }
 }
