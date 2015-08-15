@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
 namespace FinalstreamCommons.Utils
 {
     /// <summary>
-    /// ファイルを扱うユーティリティです。
+    ///     ファイルを扱うユーティリティです。
     /// </summary>
     public static class FileUtils
     {
-
         /// <summary>
-        /// ファイルサイズをGBの文字列に変換します。
+        ///     ファイルサイズをGBの文字列に変換します。
         /// </summary>
         /// <param name="fileSize">変換元のファイルサイズ。</param>
         /// <returns>変換後のファイルサイズ。</returns>
         public static string ConvertFileSizeGigaByteString(long fileSize)
         {
-            return String.Format("{0:###0.#0} GB", fileSize / 1073741824.0);
+            return String.Format("{0:###0.#0} GB", fileSize/1073741824.0);
         }
 
         /// <summary>
-        /// ファイルサイズを取得します。
+        ///     ファイルサイズを取得します。
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -36,7 +30,7 @@ namespace FinalstreamCommons.Utils
         }
 
         /// <summary>
-        /// ファイルを移動します。移動先にすでに同名のファイルが存在する場合は何もしません。
+        ///     ファイルを移動します。移動先にすでに同名のファイルが存在する場合は何もしません。
         /// </summary>
         /// <param name="srcPath"></param>
         /// <param name="destPath"></param>
@@ -58,7 +52,7 @@ namespace FinalstreamCommons.Utils
         }
 
         /// <summary>
-        /// ファイルをゴミ箱に移動する
+        ///     ファイルをゴミ箱に移動する
         /// </summary>
         /// <param name="filePath"></param>
         public static void MoveRecycleBin(string filePath)
@@ -66,10 +60,9 @@ namespace FinalstreamCommons.Utils
             if (!File.Exists(filePath)) return;
 
             FileSystem.DeleteFile(
-                  filePath,
-                  UIOption.OnlyErrorDialogs,
-                  RecycleOption.SendToRecycleBin);
-
+                filePath,
+                UIOption.OnlyErrorDialogs,
+                RecycleOption.SendToRecycleBin);
         }
     }
 }

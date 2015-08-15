@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Utils
 {
     /// <summary>
-    /// 日付ユーティリティを表します。
+    ///     日付ユーティリティを表します。
     /// </summary>
     public static class DateUtils
     {
-
         /// <summary>
-        /// シーズン文字列を取得します。
+        ///     シーズン文字列を取得します。
         /// </summary>
         /// <param name="datetime"></param>
         /// <returns></returns>
@@ -42,6 +37,5 @@ namespace FinalstreamCommons.Utils
             }
             return "Unknown";
         }
-
     }
 }

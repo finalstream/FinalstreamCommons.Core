@@ -4,8 +4,7 @@ namespace FinalstreamCommons.WebServices.Response
 {
     public class GoogleCustomSearchResponse
     {
-
-        public List<GoogleCustomSearchItem> items { get; set; } 
+        public List<GoogleCustomSearchItem> items { get; set; }
     }
 
     public class GoogleCustomSearchItem

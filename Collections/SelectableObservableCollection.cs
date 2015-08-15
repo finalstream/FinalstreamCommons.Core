@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Collections
 {
     public class SelectableObservableCollection<T> : ObservableCollection<T> where T : ISelectableItem
     {
-
         /// <summary>
-        /// 最初の選択アイテムを取得します。
+        ///     最初の選択アイテムを取得します。
         /// </summary>
         /// <returns></returns>
         public T GetFirstSelectedItem()
@@ -20,11 +15,11 @@ namespace FinalstreamCommons.Collections
         }
 
         /// <summary>
-        /// 1つだけ選択します。
+        ///     1つだけ選択します。
         /// </summary>
         public void SingleSelection(int selectIndex)
         {
-            for (int i = 0; i < Items.Count(); i++)
+            for (var i = 0; i < Items.Count(); i++)
             {
                 if (i == selectIndex)
                 {
@@ -38,15 +33,14 @@ namespace FinalstreamCommons.Collections
         }
 
         /// <summary>
-        /// 選択をクリアします。
+        ///     選択をクリアします。
         /// </summary>
         public void ClearSelection()
         {
-            foreach (var item in this.Items)
+            foreach (var item in Items)
             {
                 item.IsSelected = false;
             }
         }
-
     }
 }

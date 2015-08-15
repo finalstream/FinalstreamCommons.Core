@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Utils
 {
     /// <summary>
-    /// アプリケーションのユーティリティを表します。
+    ///     アプリケーションのユーティリティを表します。
     /// </summary>
     public static class ApplicationUtils
     {
-
         /// <summary>
-        /// アセンブリがデバッグビルドかどうかを取得します。
+        ///     アセンブリがデバッグビルドかどうかを取得します。
         /// </summary>
         /// <param name="assembly"></param>
         /// <returns></returns>

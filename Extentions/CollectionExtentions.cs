@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Microsoft.VisualBasic;
 
 namespace FinalstreamCommons.Extentions
 {
     /// <summary>
-    /// コレクションの拡張メソッドを表します。
+    ///     コレクションの拡張メソッドを表します。
     /// </summary>
     public static class CollectionExtentions
     {
@@ -20,7 +18,6 @@ namespace FinalstreamCommons.Extentions
         public static void DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection,
             IEqualityComparer<T> comparer = null)
         {
-
             var removes = nowCollection.Except(newCollection, comparer).ToArray();
 
             var adds = newCollection.Except(nowCollection, comparer).ToArray();
@@ -46,7 +43,6 @@ namespace FinalstreamCommons.Extentions
         public static void DiffUpdate<T>(this IList<T> nowList, ICollection<T> newCollection,
             IEqualityComparer<T> comparer = null)
         {
-
             // 削除されているものを削る
             var removes = nowList.Except(newCollection, comparer).ToArray();
             foreach (var remove in removes)
@@ -70,9 +66,8 @@ namespace FinalstreamCommons.Extentions
             }
         }
 
-
         /// <summary>
-        /// コレクションの要素が１つであるかどうか。
+        ///     コレクションの要素が１つであるかどうか。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="collection"></param>

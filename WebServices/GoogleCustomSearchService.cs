@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FinalstreamCommons.WebServices.Response;
+﻿using FinalstreamCommons.WebServices.Response;
 using NLog;
 using RestSharp;
 
@@ -11,18 +6,14 @@ namespace FinalstreamCommons.WebServices
 {
     public class GoogleCustomSearchService
     {
+        private readonly string _apiKey;
+        private readonly string _customSearchEngineId;
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
-
-        private RestClient _restClient;
-
+        private readonly RestClient _restClient;
         protected string ServiceUrl = "https://www.googleapis.com/customsearch/v1";
 
-        private readonly string _apiKey;
-
-        private readonly string _customSearchEngineId;
-
         /// <summary>
-        /// 新しいインスタンスを初期化します。
+        ///     新しいインスタンスを初期化します。
         /// </summary>
         /// <param name="apiKey"></param>
         /// <param name="customSearchEngineId"></param>
@@ -32,7 +23,6 @@ namespace FinalstreamCommons.WebServices
             _apiKey = apiKey;
             _customSearchEngineId = customSearchEngineId;
         }
-
 
         public GoogleCustomSearchResponse Query(string searchKeyword, string lr = "lang_ja")
         {
@@ -49,7 +39,5 @@ namespace FinalstreamCommons.WebServices
             _log.Debug("Google Custom Search Request Url:{0} Response:{1}", response.ResponseUri, response.Content);
             return response.Data;
         }
-
-
     }
 }

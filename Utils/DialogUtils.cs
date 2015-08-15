@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FinalstreamCommons.Utils
 {
     /// <summary>
-    /// ダイアログを扱うユーティリティです。
+    ///     ダイアログを扱うユーティリティです。
     /// </summary>
     public static class DialogUtils
     {
-
         public const string MessageTitleQuestion = "Question?";
 
         /// <summary>
-        /// ファイル選択ダイアログを開きます。
+        ///     ファイル選択ダイアログを開きます。
         /// </summary>
         /// <param name="title"></param>
         /// <param name="filter"></param>
@@ -25,7 +20,6 @@ namespace FinalstreamCommons.Utils
             string title = "Please select a file",
             string filter = "All Files (*.*)|*.*")
         {
-
             string resultFilePath = null;
 
             //OpenFileDialogクラスのインスタンスを作成
@@ -60,11 +54,10 @@ namespace FinalstreamCommons.Utils
             }
 
             return resultFilePath;
-
         }
 
         /// <summary>
-        /// フォルダ選択ダイアログを開きます。
+        ///     フォルダ選択ダイアログを開きます。
         /// </summary>
         /// <param name="description"></param>
         /// <param name="selectedPath"></param>
@@ -73,7 +66,6 @@ namespace FinalstreamCommons.Utils
             string description = "Please select a folder",
             string selectedPath = "")
         {
-
             string resultDirPath = null;
 
             //OpenFileDialogクラスのインスタンスを作成
@@ -97,8 +89,6 @@ namespace FinalstreamCommons.Utils
             }
 
             return resultDirPath;
-
         }
-
     }
 }

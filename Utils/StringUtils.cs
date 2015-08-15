@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace FinalstreamCommons.Utils
 {
     public static class StringUtils
     {
-
         /// <summary>
-        /// 数値であるかどうか
+        ///     数値であるかどうか
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -19,14 +14,14 @@ namespace FinalstreamCommons.Utils
             double dNullable;
             return double.TryParse(
                 s,
-                System.Globalization.NumberStyles.Any,
+                NumberStyles.Any,
                 null,
                 out dNullable
-            );
+                );
         }
 
         /// <summary>
-        /// 後ろから検索して見つかったら１度だけ置換します。
+        ///     後ろから検索して見つかったら１度だけ置換します。
         /// </summary>
         /// <returns></returns>
         public static string ReplaceLastOnce(string s, string find, string replace)
@@ -35,6 +30,5 @@ namespace FinalstreamCommons.Utils
             if (index == -1) return s;
             return s.Remove(index, find.Length).Insert(index, replace);
         }
-
     }
 }

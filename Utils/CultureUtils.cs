@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalstreamCommons.Utils
 {
     /// <summary>
-    /// カルチャを扱うユーティリティを表します。
+    ///     カルチャを扱うユーティリティを表します。
     /// </summary>
     public static class CultureUtils
     {
-
         /// <summary>
-        /// カルチャ名からカルチャ情報を生成します。
+        ///     カルチャ名からカルチャ情報を生成します。
         /// </summary>
         /// <param name="cultureNames"></param>
         /// <returns></returns>
         public static CultureInfo[] CreateCultureInfos(string[] cultureNames)
         {
-            return cultureNames.Select(x=>new CultureInfo(x)).ToArray();
+            return cultureNames.Select(x => new CultureInfo(x)).ToArray();
         }
 
         /// <summary>
-        /// カルチャに一致するカルチャを取得します。
+        ///     カルチャに一致するカルチャを取得します。
         /// </summary>
         /// <param name="cultureName"></param>
         /// <param name="cultureInfos"></param>
@@ -33,7 +28,5 @@ namespace FinalstreamCommons.Utils
         {
             return cultureInfos.Where(x => x.Name == cultureName).Concat(cultureInfos).First();
         }
-
-
     }
 }

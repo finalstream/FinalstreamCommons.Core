@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FinalstreamCommons.Collections
 {
     public class LinkedListEx<T> : LinkedList<T>
     {
-        public LinkedListEx(IEnumerable<T> enumerable):base(enumerable)
+        public LinkedListEx(IEnumerable<T> enumerable) : base(enumerable)
         {
         }
 
         public LinkedListEx()
         {
+        }
+
+        public LinkedListNode<T> this[int index]
+        {
+            get { return this[index]; }
+            set { this[index] = value; }
         }
 
         public void Reset(IEnumerable<T> items)
@@ -20,12 +25,6 @@ namespace FinalstreamCommons.Collections
             {
                 AddLast(item);
             }
-        }
-
-        public LinkedListNode<T> this[int index]
-        {
-            get { return this[index]; }
-            set { this[index] = value; }
         }
     }
 }

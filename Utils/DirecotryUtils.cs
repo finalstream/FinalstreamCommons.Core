@@ -42,12 +42,11 @@ namespace FinalstreamCommons.Utils
         }
 
         /// <summary>
-        /// フォルダをゴミ箱に移動する
+        ///     フォルダをゴミ箱に移動する
         /// </summary>
         /// <param name="dirPath"></param>
         public static void MoveRecycleBin(string dirPath)
         {
-
             if (Directory.Exists(dirPath))
             {
                 FileSystem.DeleteDirectory(
@@ -55,7 +54,6 @@ namespace FinalstreamCommons.Utils
                     UIOption.OnlyErrorDialogs,
                     RecycleOption.SendToRecycleBin);
             }
-
         }
     }
 }
