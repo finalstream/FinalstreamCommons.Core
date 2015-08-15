@@ -8,19 +8,16 @@
         <owners>Finalstream</owners>
         <licenseUrl>https://github.com/finalstream/FinalstreamCommons/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Application Development Support Framework &amp; Library.</description>
+        <description>Application Development Support Library.</description>
         <copyright>Copyright ©  2015 Finalstream</copyright>
         <projectUrl>https://github.com/finalstream/FinalstreamCommons</projectUrl>
         <language />
         <dependencies>
-            <dependency id="Dapper" version="1.40" />
-            <dependency id="Newtonsoft.Json" version="6.0.8" />
+            <dependency id="Newtonsoft.Json" version="7.0.1" />
             <dependency id="NLog" version="4.0.1" />
-            <dependency id="System.Data.SQLite" version="1.0.96.0" />
-            <dependency id="Rx-Main" version="2.2.5" />
             <dependency id="RestSharp" version="105.1.0" />
         </dependencies>
-        <tags>AppFramework</tags>
+        <tags>AppLibrary</tags>
     </metadata>
     <files />
 </package>
