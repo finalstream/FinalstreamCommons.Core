@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.IO;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using Newtonsoft.Json;
 using NLog;
 
@@ -92,6 +94,34 @@ namespace FinalstreamCommons.Extentions
                          "{0}";
 
             Log.Trace(() => string.Format(format, value.ToJson(formatting)));
+        }
+
+        /// <summary>
+        /// ディープコピーします。
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static T DeepCopy<T>(this T target)
+        {
+
+            object result;
+            var bf = new BinaryFormatter();
+
+            var ms = new MemoryStream();
+
+            try
+            {
+                bf.Serialize(ms, target);
+                ms.Position = 0;
+                result = bf.Deserialize(ms);
+            }
+            finally
+            {
+                ms.Close();
+            }
+
+            return (T) result;
+
         }
     }
 }
