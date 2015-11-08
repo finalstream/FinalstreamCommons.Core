@@ -15,8 +15,5 @@ Windowsアプリケーション開発をサポートするライブラリです�
 * DialogUtils(ファイル選択、フォルダ選択ダイアログ)
 * ScreenUtils(デバイス名からディスプレイデバイス情報取得)
 
-###WebService
-* GoogleCustomSearchService([Googleカスタム検索エンジン](https://cse.google.co.jp/cse/?hl=ja)の結果を取得)
-
 
 

@@ -1,21 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>FinalstreamCommons</id>
+        <id>FinalstreamCommons.Core</id>
         <version>$version$</version>
         <title>FinalstreamCommons</title>
         <authors>Finalstream</authors>
         <owners>Finalstream</owners>
-        <licenseUrl>https://github.com/finalstream/FinalstreamCommons/blob/master/LICENSE</licenseUrl>
+        <licenseUrl>https://github.com/finalstream/FinalstreamCommons.Core/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Application Development Support Library.</description>
         <copyright>Copyright ©  2015 Finalstream</copyright>
-        <projectUrl>https://github.com/finalstream/FinalstreamCommons</projectUrl>
+        <projectUrl>https://github.com/finalstream/FinalstreamCommons.Core</projectUrl>
         <language />
         <dependencies>
-            <dependency id="Newtonsoft.Json" version="7.0.1" />
-            <dependency id="NLog" version="4.0.1" />
-            <dependency id="RestSharp" version="105.1.0" />
         </dependencies>
         <tags>AppLibrary</tags>
     </metadata>
