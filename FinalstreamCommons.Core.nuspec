@@ -8,7 +8,7 @@
         <owners>Finalstream</owners>
         <licenseUrl>https://github.com/finalstream/FinalstreamCommons.Core/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Application Development Support Library.</description>
+        <description>Application Development Support Core Library.</description>
         <copyright>Copyright ©  2015 Finalstream</copyright>
         <projectUrl>https://github.com/finalstream/FinalstreamCommons.Core</projectUrl>
         <language />
