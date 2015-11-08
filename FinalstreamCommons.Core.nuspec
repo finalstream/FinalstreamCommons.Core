@@ -3,7 +3,7 @@
     <metadata>
         <id>FinalstreamCommons.Core</id>
         <version>$version$</version>
-        <title>FinalstreamCommons</title>
+        <title>FinalstreamCommons.Core</title>
         <authors>Finalstream</authors>
         <owners>Finalstream</owners>
         <licenseUrl>https://github.com/finalstream/FinalstreamCommons.Core/blob/master/LICENSE</licenseUrl>
