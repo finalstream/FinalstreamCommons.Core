@@ -1,8 +1,8 @@
 # FinalstreamCommons
 
-[![Build status](https://ci.appveyor.com/api/projects/status/27uk9s614srvn0dr?svg=true)](https://ci.appveyor.com/project/finalstream/finalstreamcommons)　[![NuGet](https://img.shields.io/nuget/v/FinalstreamCommons.svg?style=plastic)](https://www.nuget.org/packages/FinalstreamCommons/)　[![GitHub license](https://img.shields.io/github/license/finalstream/FinalstreamCommons.svg)]()
+[![Build status](https://ci.appveyor.com/api/projects/status/f4h9ga7grda1mt4v?svg=true)](https://ci.appveyor.com/project/finalstream/finalstreamcommons-core)　[![NuGet](https://img.shields.io/nuget/v/FinalstreamCommons.Core.svg?style=plastic)](https://www.nuget.org/packages/FinalstreamCommons.Core/)　[![GitHub license](https://img.shields.io/github/license/finalstream/FinalstreamCommons.Core.svg)]()
 
-Windowsアプリケーション開発をサポートするライブラリです。  
+Windowsアプリケーション開発をサポートするコアライブラリです。  
 
 ##主な機能
 
