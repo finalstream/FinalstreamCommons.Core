@@ -7,6 +7,7 @@ namespace FinalstreamCommons.Systems
     /// <summary>
     ///     アセンブリ情報を保持します。
     /// </summary>
+    /// <remarks>ref http://neue.cc/2011/03/28_311.html </remarks>
     public class AssemblyInfoData
     {
         public static readonly AssemblyInfoData ExecutingAssembly = new AssemblyInfoData(Assembly.GetExecutingAssembly());
