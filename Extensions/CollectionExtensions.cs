@@ -17,7 +17,7 @@ namespace FinalstreamCommons.Extensions
         /// <param name="nowCollection"></param>
         /// <param name="newCollection"></param>
         /// <param name="comparer"></param>
-        public static void DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection,
+        public static bool DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection,
             IEqualityComparer<T> comparer = null)
         {
             var removes = nowCollection.Except(newCollection, comparer).ToArray();
@@ -33,6 +33,7 @@ namespace FinalstreamCommons.Extensions
             {
                 if (!nowCollection.Contains(add)) nowCollection.Add(add);
             }
+            return removes.Length + adds.Length > 0;
         }
 
         /// <summary>
