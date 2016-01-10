@@ -59,6 +59,7 @@
     <Compile Include="Collections\SelectableObservableCollection.cs" />
     <Compile Include="Comparers\NaturalComparer.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\RectExtensions.cs" />
     <Compile Include="Libraries\Migemo.cs" />
     <Compile Include="Models\DisplayableItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
