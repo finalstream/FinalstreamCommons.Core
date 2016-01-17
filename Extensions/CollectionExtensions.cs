@@ -55,9 +55,14 @@ namespace FinalstreamCommons.Extensions
                 nowCollection.Remove(remove);
             }
 
+            var i = 0;
             foreach (var add in adds)
             {
-                if (!nowCollection.Contains(add)) nowCollection.Insert(0, add);
+                if (!nowCollection.Contains(add))
+                {
+                    nowCollection.Insert(i, add);
+                    i++;
+                }
             }
             return removes.Length + adds.Length > 0;
         }
