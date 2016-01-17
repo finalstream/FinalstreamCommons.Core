@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Finalstream")]
 [assembly: AssemblyProduct("FinalstreamCommons")]
-[assembly: AssemblyCopyright("Copyright ©  2015 Finalstream")]
+[assembly: AssemblyCopyright("Copyright ©  2015-2016 Finalstream")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
