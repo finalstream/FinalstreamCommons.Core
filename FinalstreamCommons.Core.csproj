@@ -76,6 +76,10 @@
     <Compile Include="Utils\ProcessUtils.cs" />
     <Compile Include="Utils\ScreenUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Windows\GlobalMouseHook.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\GlobalMouseHookedEventArgs.cs" />
     <Compile Include="Windows\Win32Api.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
