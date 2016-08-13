@@ -10,11 +10,24 @@ Windowsアプリケーション開発をサポートするコアライブラリ�
 ###Builders
 * CommandLineBuilder(コマンドライン文字列を生成)
 
+##Comparers
+* NaturalComparer(エクスプローラと同じソートを行う)
+
+##Extentions
+* CollectionExtentions(２つのコレクションの差分更新)
+
 ###Utils
 * ColorUtils(反対色などを取得)
 * DateUtils(シーズン取得)
 * DialogUtils(ファイル選択、フォルダ選択ダイアログ)
 * ScreenUtils(デバイス名からディスプレイデバイス情報取得)
+
+##Systems
+* DynamicLinkLibraryInfo(DLLの情報を取得)
+
+###Windows
+* GlobalMouseHook(グローバルエリアのマウスの動きをフック。ダブルクリック判定＆デスクトップ判定可能)
+* ClipboardMonitor(クリップボード監視)
 
 
 
