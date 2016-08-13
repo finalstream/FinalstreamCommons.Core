@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -191,7 +192,8 @@ namespace FinalstreamCommons.Windows
                 throw new PlatformNotSupportedException("Windows 98/Meではサポートされていません。");
             MouseHookDelegate handler = CallNextHook;
             _hookDelegate = GCHandle.Alloc(handler);
-            var module = Marshal.GetHINSTANCE(typeof (GlobalMouseHook).Assembly.GetModules()[0]);
+            
+            var module = Marshal.GetHINSTANCE(Assembly.GetEntryAssembly().GetModules()[0]);
             _hook = SetWindowsHookEx(MouseLowLevelHook, handler, module, 0);
             if (_hook == IntPtr.Zero) throw new Win32Exception(Marshal.GetLastWin32Error());
         }
