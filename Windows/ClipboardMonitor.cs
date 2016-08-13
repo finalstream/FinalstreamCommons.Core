@@ -7,7 +7,7 @@ namespace FinalstreamCommons.Windows
     /// <summary>
     /// クリップボードを監視するクラスを表します。
     /// </summary>
-    internal class ClipboardMonitor : Control
+    public class ClipboardMonitor : Control
     {
         private IntPtr _nextClipboardViewer;
 
