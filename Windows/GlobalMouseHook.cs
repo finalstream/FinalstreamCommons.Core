@@ -52,22 +52,28 @@ namespace FinalstreamCommons.Windows
     internal struct MouseState
     {
         /// <summary>スクリーン座標によるマウスカーソルの現在位置。</summary>
-        [FieldOffset(0)] public Point Point;
+        [FieldOffset(0)]
+        public Point Point;
 
         /// <summary>messageがMouseMessage.Wheelの時にその詳細データを持つ。</summary>
-        [FieldOffset(8)] public WheelData WheelData;
+        [FieldOffset(8)]
+        public WheelData WheelData;
 
         /// <summary>messageがMouseMessage.XDown/MouseMessage.XUpの時にその詳細データを持つ。</summary>
-        [FieldOffset(8)] public XButtonData XButtonData;
+        [FieldOffset(8)]
+        public XButtonData XButtonData;
 
         /// <summary>マウスのイベントインジェクト。</summary>
-        [FieldOffset(12)] public MouseStateFlag Flag;
+        [FieldOffset(12)]
+        public MouseStateFlag Flag;
 
         /// <summary>メッセージが送られたときの時間</summary>
-        [FieldOffset(16)] public int Time;
+        [FieldOffset(16)]
+        public int Time;
 
         /// <summary>メッセージに関連づけられた拡張情報</summary>
-        [FieldOffset(20)] public IntPtr ExtraInfo;
+        [FieldOffset(20)]
+        public IntPtr ExtraInfo;
     }
 
     /// <summary>マウスホイールの状態の詳細を表す。</summary>
@@ -192,7 +198,7 @@ namespace FinalstreamCommons.Windows
                 throw new PlatformNotSupportedException("Windows 98/Meではサポートされていません。");
             MouseHookDelegate handler = CallNextHook;
             _hookDelegate = GCHandle.Alloc(handler);
-            
+
             var module = Marshal.GetHINSTANCE(Assembly.GetEntryAssembly().GetModules()[0]);
             _hook = SetWindowsHookEx(MouseLowLevelHook, handler, module, 0);
             if (_hook == IntPtr.Zero) throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -238,6 +244,63 @@ namespace FinalstreamCommons.Windows
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         private static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr GetParent(IntPtr hwnd);
+        [DllImport("user32.dll")]
+        static extern int SendMessage(IntPtr hwnd, int msg, IntPtr wp, IntPtr lp);
+        [DllImport("user32.dll")]
+        static extern bool ScreenToClient(IntPtr hWnd, ref POINT lpPoint);
+        [DllImport("user32.dll")]
+        static extern int GetWindowThreadProcessId(IntPtr hwnd, ref int pID);
+        [DllImport("kernel32.dll")]
+        static extern IntPtr OpenProcess(int fdwAccess, bool fInherit, int IDProcess);
+        [DllImport("kernel32.dll")]
+        static extern bool CloseHandle(IntPtr hObject);
+        [DllImport("kernel32.dll")]
+        static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress,
+            int dwSize, int flAllocationType, int flProtect);
+        [DllImport("kernel32.dll")]
+        static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress,
+            int dwSize, int dwFreeType);
+        [DllImport("kernel32.dll")]
+        static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
+            ref LVHITTESTINFO lpBuffer, int nSize, ref int lpNumberOfBytesWritten);
+        [DllImport("kernel32.dll")]
+        static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress,
+            ref LVHITTESTINFO lpBuffer, int nSize, ref int lpNumberOfBytesRead);
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowText", CharSet = CharSet.Auto)]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct POINT
+        {
+            public int x;
+            public int y;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct LVHITTESTINFO
+        {
+            public POINT pt;
+            public uint flags;
+            public int iItem;
+            public int iSubItem;
+        }
+
+        const int PROCESS_VM_OPERATION = 8;
+        const int PROCESS_VM_READ = 16;
+        const int PROCESS_VM_WRITE = 32;
+        const int MEM_COMMIT = 4096;
+        const int MEM_RELEASE = 32768;
+        const int PAGE_READWRITE = 4;
+        const int LVM_FIRST = 0x1000;
+        const int LVM_SUBITEMHITTEST = (LVM_FIRST + 57);
+
 
         /// <summary>マウスが入力されたときに発生する。</summary>
         public event GlobalMouseHookedEventHandler MouseHooked
@@ -303,6 +366,7 @@ namespace FinalstreamCommons.Windows
             return CallNextHookEx(_hook, code, message, ref state);
         }
 
+
         /// <summary>
         ///     デスクトップ判定
         /// </summary>
@@ -313,8 +377,57 @@ namespace FinalstreamCommons.Windows
             var point = state.Point;
             var hwnd = WindowFromPoint(point.X, point.Y);
 
-            return hwnd == GetDesktopWindow();
+            var sb = new StringBuilder(65535);
+            GetWindowText(GetForegroundWindow(), sb, 65535);
+
+            return hwnd == GetDesktopWindow()
+                && IsHitTestNoIcon(hwnd, point.X, point.Y)
+                && sb.ToString().Trim() == ""; // ホントにデスクトップかどうか（WindowFromPointは間違えたハンドルを返す場合があるので。semi transparent windowだと間違える？デスクトップのウインドウ名は空であるのでそれで判定）
         }
+
+        /// <summary>
+        /// 指定の座標にアイコンがないか
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>アイコンがない場合はtrue</returns>
+        private bool IsHitTestNoIcon(IntPtr hwnd, int x, int y)
+        {
+            int pID = 0;
+            IntPtr hProcess = IntPtr.Zero;
+            IntPtr p = IntPtr.Zero;
+            try
+            {
+                POINT pt = new POINT();
+                pt.x = x;
+                pt.y = y;
+                ScreenToClient(hwnd, ref pt);
+                GetWindowThreadProcessId(hwnd, ref pID);
+                hProcess = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE, false, pID);
+                if (hProcess != IntPtr.Zero)
+                {
+                    LVHITTESTINFO lhi = new LVHITTESTINFO();
+                    int dw = 0;
+                    lhi.pt = pt;
+                    p = VirtualAllocEx(hProcess, IntPtr.Zero,
+                        Marshal.SizeOf(lhi), MEM_COMMIT, PAGE_READWRITE);
+                    WriteProcessMemory(hProcess, p, ref lhi, Marshal.SizeOf(lhi), ref dw);
+                    SendMessage(hwnd, LVM_SUBITEMHITTEST, IntPtr.Zero, p);
+                    ReadProcessMemory(hProcess, p, ref lhi, Marshal.SizeOf(lhi), ref dw);
+                    return lhi.iItem < 0;
+                }
+            }
+            finally
+            {
+                if (p != IntPtr.Zero)
+                    VirtualFreeEx(hProcess, p, 0, MEM_RELEASE);
+                if (hProcess != IntPtr.Zero)
+                    CloseHandle(hProcess);
+            }
+            return false;
+        }
+
 
         public static IntPtr GetDesktopWindow(DesktopWindow desktopWindow = DesktopWindow.SysListView32)
         {
@@ -335,7 +448,6 @@ namespace FinalstreamCommons.Windows
                             _SHELLDLL_DefViewParent = hwnd;
                             _SHELLDLL_DefView = child;
                             _SysListView32 = FindWindowEx(child, IntPtr.Zero, "SysListView32", "FolderView");
-                            ;
                             return false;
                         }
                     }
@@ -407,8 +519,8 @@ namespace FinalstreamCommons.Windows
         /// <returns></returns>
         protected bool InDoubleClickBounds(Point pt)
         {
-            var wd = SystemInformation.DoubleClickSize.Width/2;
-            var ht = SystemInformation.DoubleClickSize.Height/2;
+            var wd = SystemInformation.DoubleClickSize.Width / 2;
+            var ht = SystemInformation.DoubleClickSize.Height / 2;
             return (((pt.X >= (_position.X - wd)) && (pt.X < (_position.X + wd))) &&
                     (((_position.Y >= (pt.Y - ht)) && (_position.Y <= (pt.Y + ht)))));
         }
