@@ -379,10 +379,11 @@ namespace FinalstreamCommons.Windows
 
             var sb = new StringBuilder(65535);
             GetWindowText(GetForegroundWindow(), sb, 65535);
+            var desktopWindowText = sb.ToString().Trim();
 
             return hwnd == GetDesktopWindow()
                 && IsHitTestNoIcon(hwnd, point.X, point.Y)
-                && sb.ToString().Trim() == ""; // ホントにデスクトップかどうか（WindowFromPointは間違えたハンドルを返す場合があるので。semi transparent windowだと間違える？デスクトップのウインドウ名は空であるのでそれで判定）
+                && (desktopWindowText == "" || desktopWindowText == "Program Manager"); // ホントにデスクトップかどうか（WindowFromPointは間違えたハンドルを返す場合があるので。semi transparent windowだと間違える？デスクトップのウインドウ名は空もしくはProgram Managerであるのでそれで判定）
         }
 
         /// <summary>
