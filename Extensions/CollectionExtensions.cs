@@ -19,6 +19,7 @@ namespace FinalstreamCommons.Extensions
         /// <param name="comparer"></param>
         public static bool DiffUpdate<T>(this ICollection<T> nowCollection, ICollection<T> newCollection,
             IEqualityComparer<T> comparer = null)
+            where T : class
         {
             var removes = nowCollection.Except(newCollection, comparer).ToArray();
 
@@ -33,6 +34,15 @@ namespace FinalstreamCommons.Extensions
             {
                 if (!nowCollection.Contains(add)) nowCollection.Add(add);
             }
+
+            var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
+
+            foreach (var update in updates)
+            {
+                var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
+                if (src != null) update.CopyFrom(src);
+            }
+
             return removes.Length + adds.Length > 0;
         }
 
@@ -45,6 +55,7 @@ namespace FinalstreamCommons.Extensions
         /// <param name="comparer"></param>
         public static bool DiffInsert<T>(this IList<T> nowCollection, ICollection<T> newCollection,
             IEqualityComparer<T> comparer = null)
+                   where T : class
         {
             var removes = nowCollection.Except(newCollection, comparer).ToArray();
 
@@ -64,6 +75,15 @@ namespace FinalstreamCommons.Extensions
                     i++;
                 }
             }
+
+            var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
+
+            foreach(var update in updates)
+            {
+                var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
+                if (src != null) update.CopyFrom(src);
+            }
+
             return removes.Length + adds.Length > 0;
         }
 
