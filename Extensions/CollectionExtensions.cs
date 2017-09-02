@@ -35,12 +35,18 @@ namespace FinalstreamCommons.Extensions
                 if (!nowCollection.Contains(add)) nowCollection.Add(add);
             }
 
-            var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
-
-            foreach (var update in updates)
+            if (comparer != null)
             {
-                var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
-                if (src != null) update.CopyFrom(src);
+                var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
+
+                if (comparer != null)
+                {
+                    foreach (var update in updates)
+                    {
+                        var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
+                        if (src != null) update.CopyFrom(src);
+                    }
+                }
             }
 
             return removes.Length + adds.Length > 0;
@@ -76,12 +82,13 @@ namespace FinalstreamCommons.Extensions
                 }
             }
 
-            var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
-
-            foreach(var update in updates)
-            {
-                var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
-                if (src != null) update.CopyFrom(src);
+            if (comparer != null) {
+                var updates = nowCollection.Intersect(newCollection, comparer).ToArray();
+                foreach (var update in updates)
+                {
+                    var src = newCollection.FirstOrDefault(x => comparer.Equals(update, x));
+                    if (src != null) update.CopyFrom(src);
+                }
             }
 
             return removes.Length + adds.Length > 0;
